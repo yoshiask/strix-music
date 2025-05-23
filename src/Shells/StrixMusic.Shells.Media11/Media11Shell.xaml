@@ -10,6 +10,8 @@
     xmlns:sdkctrls="using:StrixMusic.Sdk.WinUI.Controls"
     xmlns:sdkvms="using:StrixMusic.Sdk.ViewModels"
     xmlns:selectors="using:StrixMusic.Shells.Media11.TemplateSelectors"
+    xmlns:tkcontrols="using:CommunityToolkit.WinUI.Controls"
+    xmlns:toolkit="using:CommunityToolkit.WinUI"
     mc:Ignorable="d">
 
     <sdkctrls:Shell.Resources>
@@ -65,6 +67,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -73,322 +76,42 @@
             <Image Source="https://github.com/Arlodotexe/strix-music/raw/refs/heads/main/www/favicon.ico"
                    HorizontalAlignment="Left" Margin="6"/>
 
-            <TextBlock
-                        x:Uid="/Resources/AppNameTB"
-                        Margin="32,0,0,0"
-                        VerticalAlignment="Center"
-                        FontSize="12"
-                        FontWeight="SemiLight" />
+            <TextBlock x:Uid="/Resources/AppNameTB"
+                       Margin="32,0,0,0"
+                       VerticalAlignment="Center"
+                       FontSize="12"
+                       FontWeight="SemiLight" />
         </Grid>
-
-        <Border Grid.Row="1" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
-                BorderThickness="1" BorderBrush="{ThemeResource SystemControlBackgroundBaseLowBrush}" CornerRadius="2"/>
+        <!--Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"-->
+        <Border Grid.Row="1"
+                BorderThickness="0" BorderBrush="{ThemeResource SystemControlBackgroundBaseLowBrush}" CornerRadius="2"/>
         <Border Grid.Row="1" Margin="1"
-                BorderThickness="1" BorderBrush="{ThemeResource SystemControlBackgroundAltMediumHighBrush}" CornerRadius="1"/>
+                BorderThickness="0" BorderBrush="{ThemeResource SystemControlBackgroundAltMediumHighBrush}" CornerRadius="1"/>
 
-        <SplitView
-            x:Name="MainSplitView"
-            Grid.Row="1"
-            DisplayMode="CompactInline"
-            OpenPaneLength="320"
-            PaneBackground="Transparent"
-            PaneClosed="OnPaneStateChanged"
-            PaneClosing="OnPaneStateChanged"
-            PaneOpening="OnPaneStateChanged">
-            <SplitView.Content>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
+        <Border Grid.Row="1" VerticalAlignment="Top" Height="41"
+                BorderThickness="1" BorderBrush="{ThemeResource GlassTubeHeavyBackgroundBrush}"
+                Background="{ThemeResource GlassTubeHeavyBackgroundBrush}">
 
-                    <Grid
-                        x:Name="SmallHeader"
-                        Height="84"
-                        Background="{ThemeResource PaneHostBackgroundBrush}"
-                        Visibility="Collapsed">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="36" />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="48" />
-                            <ColumnDefinition Width="auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
+            <tkcontrols:Segmented HorizontalAlignment="Center"
+                                  SelectedIndex="2" SelectionMode="Single"
+                                  SelectionChanged="Segmented_SelectionChanged">
+                <tkcontrols:SegmentedItem Content="Now Playing" />
+                <tkcontrols:SegmentedItem Content="Home" />
+                <tkcontrols:SegmentedItem Content="Library" />
+                <tkcontrols:SegmentedItem Content="Playlists" />
+                <!--<controls:SegmentedItem Content="Friends" />-->
+            </tkcontrols:Segmented>
+        </Border>
 
-                        <!--  Hamburger Button  -->
-                        <Button
-                            Grid.Row="1"
-                            Width="48"
-                            Command="{x:Bind HamburgerPressedCommand}"
-                            Style="{StaticResource Media11Button}">
-                            <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE700;" />
-                        </Button>
-
-                        <!--  Small Header text  -->
-                        <TextBlock
-                            x:Name="SmallHeaderText"
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            Margin="8,0,0,0"
-                            VerticalAlignment="Center"
-                            FontSize="18"
-                            FontWeight="SemiBold"
-                            Text="{x:Bind Title, Mode=OneWay}" />
-
-                        <!--  Search button  -->
-                        <Button
-                            Grid.Row="1"
-                            Grid.Column="2"
-                            Width="48"
-                            HorizontalAlignment="Right"
-                            Style="{StaticResource Media11Button}">
-                            <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE11A;" />
-                        </Button>
-                    </Grid>
-
-                    <!--  Large Header  -->
-                    <Grid x:Name="LargeHeaderWrapper" Visibility="{x:Bind ShowLargeHeader, Mode=OneWay}">
-                        <TextBlock
-                            x:Name="LargeHeaderText"
-                            Margin="20,44,20,0"
-                            FontSize="34"
-                            FontWeight="Light"
-                            Text="{x:Bind Title, Mode=OneWay}" />
-                    </Grid>
-
-                    <ContentControl
-                        x:Name="MainContent"
-                        Grid.Row="1"
-                        HorizontalContentAlignment="Stretch"
+        <ContentControl x:Name="MainContent"
+                        Grid.Row="2" HorizontalContentAlignment="Stretch"
                         ContentTemplateSelector="{StaticResource MainContentTemplateSelector}" />
-                </Grid>
-            </SplitView.Content>
-            <SplitView.Pane>
-                <Grid Padding="0,0,0,104">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="36" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-
-                    <StackPanel Grid.Row="1">
-                        <!--  Hamburger Button  -->
-                        <Button
-                            Width="48"
-                            Height="48"
-                            Background="Transparent"
-                            BorderThickness="0"
-                            Command="{x:Bind HamburgerPressedCommand}">
-                            <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE700;" />
-                        </Button>
-
-                        <!--  Search Box  -->
-                        <Button
-                            x:Name="SearchButton"
-                            Width="48"
-                            HorizontalAlignment="Left"
-                            Style="{StaticResource Media11Button}">
-                            <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE11A;" />
-                        </Button>
-                        <AutoSuggestBox
-                            x:Name="SearchBox"
-                            x:Uid="/Common/SearchTBox"
-                            Margin="8"
-                            BorderThickness="0"
-                            PlaceholderText="Search..."
-                            QueryIcon="Find"
-                            Style="{StaticResource Media11SearchAutoSuggestBox}" />
-
-                        <!--  Main Nav Buttons  -->
-                        <ToggleButton
-                            x:Name="MyMusicButton"
-                            Click="NavigationButtonClicked"
-                            Style="{StaticResource Media11NavigationButton}"
-                            Tag="MyMusic">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="48" />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-
-                                <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xEC4F;" />
-
-                                <TextBlock
-                                    x:Uid="/Music/MyMusicTB"
-                                    Grid.Column="1"
-                                    Text="My Music" />
-                            </Grid>
-                        </ToggleButton>
-                        <ToggleButton
-                            x:Name="RecentButton"
-                            Click="NavigationButtonClicked"
-                            Style="{StaticResource Media11NavigationButton}"
-                            Tag="Recent">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="48" />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-
-                                <!--<SymbolIcon Symbol="Clock"/>-->
-                                <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE2AD;" />
-
-                                <TextBlock
-                                    x:Uid="/Music/RecentPlayedTB"
-                                    Grid.Column="1"
-                                    Text="Recently Played" />
-                            </Grid>
-                        </ToggleButton>
-                        <ToggleButton
-                            x:Name="NowPlayingButton"
-                            Click="NavigationButtonClicked"
-                            Style="{StaticResource Media11NavigationButton}"
-                            Tag="NowPlaying">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="48" />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-
-                                <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xF61F;" />
-
-                                <TextBlock
-                                    x:Uid="/Music/NowPlayingTB"
-                                    Grid.Column="1"
-                                    Text="Now Playing" />
-                            </Grid>
-                        </ToggleButton>
-
-                        <!--  Seperator  -->
-                        <Rectangle
-                            x:Name="Seperator"
-                            Height="1"
-                            Margin="12,0"
-                            Fill="{ThemeResource SystemBaseHighColor}"
-                            Opacity=".5" />
-
-                        <!--  Playlist button  -->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition Width="auto" />
-                            </Grid.ColumnDefinitions>
-
-                            <ToggleButton
-                                x:Name="PlaylistsButton"
-                                Click="NavigationButtonClicked"
-                                Style="{StaticResource Media11NavigationButton}"
-                                Tag="Playlists">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="48" />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-
-                                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE142;" />
-
-                                    <TextBlock
-                                        x:Uid="/Music/PlaylistsTB"
-                                        Grid.Column="1"
-                                        Text="Playlists" />
-                                </Grid>
-                            </ToggleButton>
-
-                            <Button
-                                Grid.Column="1"
-                                Width="48"
-                                Style="{StaticResource Media11Button}">
-                                <SymbolIcon Symbol="Add" />
-                            </Button>
-                        </Grid>
-
-                        <Button
-                            x:Name="CompactCreatePlaylistButton"
-                            Width="48"
-                            HorizontalAlignment="Left"
-                            Style="{StaticResource Media11Button}"
-                            Visibility="Collapsed">
-                            <SymbolIcon Symbol="Add" />
-                        </Button>
-                    </StackPanel>
-
-                    <collections:Media11PlaylistCollection
-                        x:Name="PlaylistList"
-                        Grid.Row="2"
-                        Collection="{x:Bind Root.Library, Mode=OneWay}"
-                        Style="{StaticResource PanePlaylistCollectionStyle}" />
-                </Grid>
-            </SplitView.Pane>
-        </SplitView>
 
         <controls:Media11NowPlayingBar
-            Grid.Row="2"
+            Grid.Row="3"
             Background="Transparent"
             BackgroundColor="Transparent"
             Height="96"
             Devices="{x:Bind Root.Devices, Mode=OneWay}" />
-
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="Sizes">
-                <VisualState x:Name="Large">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="1200" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="MainSplitView.IsPaneOpen" Value="True" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Medium">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="600" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="MainSplitView.DisplayMode" Value="CompactOverlay" />
-                        <Setter Target="MainSplitView.PaneBackground" Value="{ThemeResource PaneBackgroundBrush}" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Small">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger x:Name="SmallTrigger" MinWindowWidth="0" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="MainSplitView.DisplayMode" Value="Overlay" />
-                        <Setter Target="MainSplitView.PaneBackground" Value="{ThemeResource PaneBackgroundBrush}" />
-                        <Setter Target="LargeHeaderText.Visibility" Value="Collapsed" />
-                        <Setter Target="SmallHeader.Visibility" Value="Visible" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-            <VisualStateGroup x:Name="PaneStates">
-                <VisualState x:Name="Full">
-                    <!--<VisualState.StateTriggers>
-                        <StateTrigger IsActive="{x:Bind MainSplitView.IsPaneOpen, Mode=OneWay}"/>
-                    </VisualState.StateTriggers>-->
-                    <VisualState.Setters>
-                        <Setter Target="Seperator.Width" Value="auto" />
-                        <Setter Target="Seperator.HorizontalAlignment" Value="Stretch" />
-                        <Setter Target="CompactCreatePlaylistButton.Visibility" Value="Collapsed" />
-                        <Setter Target="PlaylistList.Visibility" Value="Visible" />
-                        <Setter Target="SearchButton.Visibility" Value="Collapsed" />
-                        <Setter Target="SearchBox.Visibility" Value="Visible" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="Compact">
-                    <!--<VisualState.StateTriggers>
-                        <StateTrigger IsActive="{x:Bind !MainSplitView.IsPaneOpen, Mode=OneWay}"/>
-                    </VisualState.StateTriggers>-->
-                    <VisualState.Setters>
-                        <Setter Target="Seperator.Width" Value="24" />
-                        <Setter Target="Seperator.HorizontalAlignment" Value="Left" />
-                        <Setter Target="CompactCreatePlaylistButton.Visibility" Value="Visible" />
-                        <Setter Target="PlaylistList.Visibility" Value="Collapsed" />
-                        <Setter Target="SearchButton.Visibility" Value="Visible" />
-                        <Setter Target="SearchBox.Visibility" Value="Collapsed" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
     </Grid>
 </sdkctrls:Shell>

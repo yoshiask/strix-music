@@ -15,6 +15,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="ClusterNet" Version="0.0.3-alpha" />
+    <PackageReference Include="CommunityToolkit.Uwp.Controls.Segmented" Version="8.0.240109" />
+    <PackageReference Include="CommunityToolkit.Uwp.Extensions" Version="8.0.240109" />
     <PackageReference Include="OwlCore" Version="0.4.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>

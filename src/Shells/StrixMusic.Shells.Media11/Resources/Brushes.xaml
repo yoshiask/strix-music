@@ -50,4 +50,19 @@
     </ResourceDictionary.ThemeDictionaries>
 
     <RevealBackgroundBrush x:Key="TransparentBackgroundRevealBrush" Color="Transparent"/>
+
+    <LinearGradientBrush x:Key="GlassTubeHeavyBackgroundBrush"
+                         StartPoint="0,0" EndPoint="0,1" MappingMode="RelativeToBoundingBox">
+        <GradientStop Color="#33FFFFFF" Offset="0" />
+        <GradientStop Color="#11FFFFFF" Offset="0.5" />
+        <GradientStop Color="#44000000" Offset="0.5" />
+        <GradientStop Color="#33000000" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="GlassTubeHeavyBorderBrush"
+                         StartPoint="0,0" EndPoint="0,1" MappingMode="RelativeToBoundingBox">
+        <GradientStop Color="{ThemeResource SystemAltLowColor}" Offset="0" />
+        <GradientStop Color="{ThemeResource SystemAltMediumLowColor}" Offset="1" />
+    </LinearGradientBrush>
+    
 </ResourceDictionary>

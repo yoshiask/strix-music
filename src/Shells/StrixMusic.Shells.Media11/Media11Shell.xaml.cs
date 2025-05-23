@@ -3,6 +3,7 @@ using System.Linq;
 using CommunityToolkit.Diagnostics;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using CommunityToolkit.WinUI.Controls;
 using StrixMusic.Sdk.ViewModels;
 using StrixMusic.Sdk.WinUI.Controls;
 using StrixMusic.Sdk.WinUI.Globalization;
@@ -76,8 +77,6 @@ namespace StrixMusic.Shells.Media11
 
             // Register playlists page navigation
             WeakReferenceMessenger.Default.Register<PlaylistsViewNavigationRequestMessage>(this, (s, e) => NavigatePage(e));
-
-            HamburgerPressedCommand = new RelayCommand(HamburgerToggled);
 
             RegisterPropertyChangedCallback(RootProperty, (x, _) => ((Media11Shell)x).OnRootChanged());
 
@@ -159,47 +158,6 @@ namespace StrixMusic.Shells.Media11
             _navigationTracker.NavigateBackwards();
         }
 
-        private void NavigationButtonClicked(object? sender, RoutedEventArgs e)
-        {
-            if (sender is not ToggleButton button || Root is null)
-                return;
-
-            switch (button.Tag as string)
-            {
-                case "MyMusic":
-                    WeakReferenceMessenger.Default.Send(new HomeViewNavigationRequestMessage((LibraryViewModel)Root.Library));
-                    break;
-                case "Playlists":
-
-                    WeakReferenceMessenger.Default.Send(new PlaylistsViewNavigationRequestMessage((LibraryViewModel)Root.Library));
-                    break;
-            }
-
-            UpdateCheckedState(button.Tag?.ToString() ?? string.Empty);
-        }
-
-        private void UpdateCheckedState(string checkedItem)
-        {
-            MyMusicButton.IsChecked = checkedItem == "MyMusic";
-            RecentButton.IsChecked = checkedItem == "Recent";
-            NowPlayingButton.IsChecked = checkedItem == "NowPlaying";
-        }
-
-        private void HamburgerToggled()
-        {
-            MainSplitView.IsPaneOpen = !MainSplitView.IsPaneOpen;
-        }
-
-        private void OnPaneStateChanged(SplitView sender, object e) => UpdatePaneState();
-
-        private void UpdatePaneState()
-        {
-            if (MainSplitView.IsPaneOpen)
-                VisualStateManager.GoToState(this, "Full", true);
-            else
-                VisualStateManager.GoToState(this, "Compact", true);
-        }
-
         private void NavigatePage<T>(PageNavigationRequestMessage<T> viewModel)
         {
             MainContent.Content = viewModel.PageData;
@@ -212,31 +170,22 @@ namespace StrixMusic.Shells.Media11
             
             Title = LocalizationResources.Music?.GetString(viewModel.PageTitleResource) ?? viewModel.PageTitleResource;
             ShowLargeHeader = viewModel.ShowLargeHeader;
-
-            UpdateSelectedNavigationButton(viewModel);
         }
 
-        private void UpdateSelectedNavigationButton<T>(PageNavigationRequestMessage<T> viewModel)
+        private void Segmented_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ToggleButton? button = viewModel switch
+            if (sender is not Segmented navigationBar || Root is null)
+                return;
+
+            switch (navigationBar.SelectedIndex)
             {
-                HomeViewNavigationRequestMessage _ => MyMusicButton,
-                PlaylistViewNavigationRequestMessage _ => PlaylistsButton,
-                _ => null,
-            };
+                case 2:
+                    WeakReferenceMessenger.Default.Send(new HomeViewNavigationRequestMessage((LibraryViewModel)Root.Library));
+                    break;
 
-            // Reset all buttons, but not the PlaylistList
-            MyMusicButton.IsChecked = false;
-            RecentButton.IsChecked = false;
-            NowPlayingButton.IsChecked = false;
-            PlaylistsButton.IsChecked = false;
-
-            if (button != null)
-            {
-                PlaylistList.ClearSelected();
-
-                // Set the active navigation button
-                button.IsChecked = true;
+                case 3:
+                    WeakReferenceMessenger.Default.Send(new PlaylistsViewNavigationRequestMessage((LibraryViewModel)Root.Library));
+                    break;
             }
         }
     }
