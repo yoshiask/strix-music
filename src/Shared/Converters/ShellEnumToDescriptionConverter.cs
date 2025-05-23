@@ -13,13 +13,7 @@ namespace StrixMusic.Converters
         /// <inheritdoc />
         public object Convert(object value, Type targetType, object parameter, string language) => value switch
         {
-            StrixMusicShells strixShells => strixShells switch
-            {
-                StrixMusicShells.ZuneDesktop => "A faithful recreation of the iconic Zune Desktop app.",
-                StrixMusicShells.GrooveMusic => "A faithful recreation of the Groove Music app from Windows 10",
-                StrixMusicShells.Sandbox => "Used by developers to test components and create inbox controls.",
-                _ => ThrowHelper.ThrowNotSupportedException<string>(),
-            },
+            StrixMusicShells strixShells => ShellInfo.All[strixShells].Description,
             AdaptiveShells adaptiveShells => adaptiveShells switch
             {
                 AdaptiveShells.GrooveMusic => Convert(StrixMusicShells.GrooveMusic, targetType, parameter, language),
