@@ -23,12 +23,6 @@
     <DataTemplate x:Key="Media11NowPlayingBarTemplate" x:DataType="controls:Media11NowPlayingBar">
         <UserControl>
             <Grid VerticalAlignment="Center" Height="96">
-                <Grid.Background>
-                    <AcrylicBrush TintColor="{ThemeResource SystemAccentColorDark3}"
-                                  TintOpacity=".7" BackgroundSource="Backdrop"/>
-                    <!--<AcrylicBrush TintColor="{x:Bind BackgroundColor, Converter={StaticResource NullableBackupColorConverter}, Mode=OneWay}"
-                                  TintOpacity=".7" BackgroundSource="Backdrop"/>-->
-                </Grid.Background>
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroup x:Name="Sizes">
                         <VisualState x:Name="Large">
