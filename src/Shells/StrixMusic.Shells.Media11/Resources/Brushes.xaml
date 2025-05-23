@@ -51,7 +51,7 @@
 
     <RevealBackgroundBrush x:Key="TransparentBackgroundRevealBrush" Color="Transparent"/>
 
-    <LinearGradientBrush x:Key="GlassTubeHeavyBackgroundBrush"
+    <LinearGradientBrush x:Key="GlassTubeMediumBackgroundBrush"
                          StartPoint="0,0" EndPoint="0,1" MappingMode="RelativeToBoundingBox">
         <GradientStop Color="#33FFFFFF" Offset="0" />
         <GradientStop Color="#11FFFFFF" Offset="0.5" />
@@ -59,7 +59,7 @@
         <GradientStop Color="#33000000" Offset="1" />
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="GlassTubeHeavyBorderBrush"
+    <LinearGradientBrush x:Key="GlassTubeMediumBorderBrush"
                          StartPoint="0,0" EndPoint="0,1" MappingMode="RelativeToBoundingBox">
         <GradientStop Color="{ThemeResource SystemAltLowColor}" Offset="0" />
         <GradientStop Color="{ThemeResource SystemAltMediumLowColor}" Offset="1" />

@@ -89,9 +89,8 @@
                 BorderThickness="0" BorderBrush="{ThemeResource SystemControlBackgroundAltMediumHighBrush}" CornerRadius="1"/>
 
         <Border Grid.Row="1" VerticalAlignment="Top" Height="41"
-                BorderThickness="1" BorderBrush="{ThemeResource GlassTubeHeavyBackgroundBrush}"
-                Background="{ThemeResource GlassTubeHeavyBackgroundBrush}">
-
+                BorderThickness="1" BorderBrush="{ThemeResource GlassTubeMediumBorderBrush}"
+                Background="{ThemeResource GlassTubeMediumBackgroundBrush}">
             <tkcontrols:Segmented HorizontalAlignment="Center"
                                   SelectedIndex="2" SelectionMode="Single"
                                   SelectionChanged="Segmented_SelectionChanged">
