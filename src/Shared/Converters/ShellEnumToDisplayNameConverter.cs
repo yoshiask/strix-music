@@ -18,6 +18,7 @@ namespace StrixMusic.Converters
                 StrixMusicShells.ZuneDesktop => "Zune Desktop",
                 StrixMusicShells.GrooveMusic => "Groove Music",
                 StrixMusicShells.Sandbox => "Sandbox",
+                StrixMusicShells.Media11 => "Media 11",
                 _ => ThrowHelper.ThrowNotSupportedException<string>(),
             },
             AdaptiveShells adaptiveShells => adaptiveShells switch
@@ -39,6 +40,7 @@ namespace StrixMusic.Converters
                     "Zune Desktop" => StrixMusicShells.ZuneDesktop,
                     "Groove Music" => StrixMusicShells.GrooveMusic,
                     "Sandbox" => StrixMusicShells.Sandbox,
+                    "Media 11" => StrixMusicShells.Media11,
                     _ => ThrowHelper.ThrowNotSupportedException<StrixMusicShells>(),
                 };
             }
