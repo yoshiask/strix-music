@@ -8,6 +8,7 @@ using StrixMusic.Sdk.AppModels;
 using StrixMusic.Sdk.WinUI;
 using StrixMusic.Sdk.WinUI.Controls;
 using StrixMusic.Shells.Groove;
+using StrixMusic.Shells.Media11;
 using StrixMusic.Shells.ZuneDesktop;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -203,6 +204,7 @@ public sealed partial class ShellPresenter : UserControl
                 StrixMusicShells.Sandbox => new SandboxShell(),
                 StrixMusicShells.GrooveMusic => new GrooveMusic(),
                 StrixMusicShells.ZuneDesktop => new ZuneDesktop(),
+                StrixMusicShells.Media11 => new Media11Shell(),
                 _ => ThrowHelper.ThrowNotSupportedException<Shell>("This shell has not been set up for display."),
             };
 

@@ -8,4 +8,5 @@ public enum StrixMusicShells
     Sandbox,
     GrooveMusic,
     ZuneDesktop,
+    Media11,
 }
