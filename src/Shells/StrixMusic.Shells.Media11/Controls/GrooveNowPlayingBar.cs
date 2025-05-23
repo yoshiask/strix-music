@@ -54,6 +54,8 @@ namespace StrixMusic.Shells.Media11.Controls
 
         private async void ActiveDevice_NowPlayingChanged(object? sender, PlaybackItem e)
         {
+            return;
+
             // Load images if there aren't images loaded.
             // Uncommenting this will cause NowPlaying album art to break randomly while skipping tracks.
             // Maybe just ask the api for the first image directly, glhf.

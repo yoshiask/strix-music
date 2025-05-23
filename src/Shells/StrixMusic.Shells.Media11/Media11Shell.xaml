@@ -60,14 +60,38 @@
         </ResourceDictionary>
     </sdkctrls:Shell.Resources>
 
-    <Grid>
-        <Border x:Name="CustomTitleBarBorder" Height="32" />
+    <Grid Background="{ThemeResource PaneHostBackgroundBrush}" Padding="8"
+          CornerRadius="7" BorderThickness="1" BorderBrush="{ThemeResource SystemControlBackgroundBaseLowBrush}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="CustomTitleBarBorder" Height="32">
+            <Image Source="https://github.com/Arlodotexe/strix-music/raw/refs/heads/main/www/favicon.ico"
+                   HorizontalAlignment="Left" Margin="6"/>
+
+            <TextBlock
+                        x:Uid="/Resources/AppNameTB"
+                        Margin="32,0,0,0"
+                        VerticalAlignment="Center"
+                        FontSize="12"
+                        FontWeight="SemiLight" />
+        </Grid>
+
+        <Border Grid.Row="1" Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"
+                BorderThickness="1" BorderBrush="{ThemeResource SystemControlBackgroundBaseLowBrush}" CornerRadius="2"/>
+        <Border Grid.Row="1" Margin="1"
+                BorderThickness="1" BorderBrush="{ThemeResource SystemControlBackgroundAltMediumHighBrush}" CornerRadius="1"/>
 
         <SplitView
             x:Name="MainSplitView"
+            Grid.Row="1"
             DisplayMode="CompactInline"
             OpenPaneLength="320"
-            PaneBackground="{ThemeResource PaneHostBackgroundBrush}"
+            PaneBackground="Transparent"
             PaneClosed="OnPaneStateChanged"
             PaneClosing="OnPaneStateChanged"
             PaneOpening="OnPaneStateChanged">
@@ -148,13 +172,6 @@
                         <RowDefinition Height="auto" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
-
-                    <TextBlock
-                        x:Uid="/Resources/AppNameTB"
-                        Margin="48,0,0,0"
-                        VerticalAlignment="Center"
-                        FontSize="12"
-                        FontWeight="SemiLight" />
 
                     <StackPanel Grid.Row="1">
                         <!--  Hamburger Button  -->
@@ -307,8 +324,10 @@
         </SplitView>
 
         <controls:Media11NowPlayingBar
+            Grid.Row="2"
+            Background="Transparent"
+            BackgroundColor="Transparent"
             Height="96"
-            VerticalAlignment="Bottom"
             Devices="{x:Bind Root.Devices, Mode=OneWay}" />
 
         <VisualStateManager.VisualStateGroups>
