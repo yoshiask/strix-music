@@ -1,0 +1,39 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:StrixMusic.Shells.Media11.Controls"
+    xmlns:strix="using:StrixMusic.Sdk.WinUI.Controls"
+    xmlns:collections="using:StrixMusic.Sdk.WinUI.Controls.Collections"
+    xmlns:Media11col="using:StrixMusic.Shells.Media11.Controls.Collections"
+    xmlns:Media11pages="using:StrixMusic.Shells.Media11.Controls.Pages"
+    xmlns:converters="using:StrixMusic.Sdk.WinUI.Converters"
+    xmlns:sdkvms="using:StrixMusic.Sdk.ViewModels"
+    xmlns:pagevms="using:StrixMusic.Shells.Media11.ViewModels.Pages"
+    xmlns:colorconvert="using:OwlCore.WinUI.Converters.Color"
+    x:Class="StrixMusic.Shells.Media11.Styles.Pages.Media11PlaylistsPageStyle">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ms-appx:///StrixMusic.Shells.Media11/Resources/Brushes.xaml"/>
+        <ResourceDictionary Source="ms-appx:///StrixMusic.Shells.Media11/Resources/ButtonStyles.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <DataTemplate x:Key="Media11PlaylistsPageTemplate" x:DataType="pagevms:Media11PlaylistsPageViewModel">
+        <Media11col:Media11PlaylistCollection Collection="{x:Bind PlaylistCollection, Mode=OneWay}"/>
+    </DataTemplate>
+
+    <Style x:Key="Media11PlaylistsPageStyle" TargetType="Media11pages:Media11PlaylistsPage">
+        <Style.Setters>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Media11pages:Media11PlaylistsPage">
+                        <ContentControl ContentTemplate="{StaticResource Media11PlaylistsPageTemplate}"
+                                        HorizontalContentAlignment="Stretch"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style BasedOn="{StaticResource Media11PlaylistsPageStyle}" TargetType="Media11pages:Media11PlaylistsPage"/>
+
+</ResourceDictionary>

@@ -1,0 +1,58 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="using:StrixMusic.Sdk.WinUI.Converters"
+    xmlns:styles="using:StrixMusic.Shells.Media11.Styles"
+    xmlns:collectionstyles="using:StrixMusic.Shells.Media11.Styles.Collections"
+    xmlns:nowplayingstyles="using:StrixMusic.Shells.Media11.Styles.NowPlaying"
+    xmlns:pagestyles="using:StrixMusic.Shells.Media11.Styles.Pages"
+    xmlns:shellstyles="using:StrixMusic.Sdk.WinUI.Styles.Shells"
+    xmlns:dcollectionstyles="using:StrixMusic.Sdk.WinUI.Styles.Collections"
+    xmlns:ditemstyles="using:StrixMusic.Sdk.WinUI.Styles.Items"
+    xmlns:dviewstyles="using:StrixMusic.Sdk.WinUI.Styles.Views"
+    xmlns:dsecondaryviewstyles="using:StrixMusic.Sdk.WinUI.Styles.Views.Secondary">
+    
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ms-appx:///StrixMusic.Shells.Media11/Resources/Brushes.xaml"/>
+        <ResourceDictionary Source="ms-appx:///StrixMusic.Shells.Media11/Resources/ButtonStyles.xaml"/>
+        <ResourceDictionary Source="ms-appx:///StrixMusic.Shells.Media11/Resources/TextBoxStyles.xaml"/>
+        <ResourceDictionary Source="ms-appx:///StrixMusic.Shells.Media11/Styles/NowPlaying/MediaSliderStyle.xaml"/>
+        <ResourceDictionary Source="ms-appx:///StrixMusic.Shells.Media11/Styles/PivotStyle.xaml"/>
+
+
+        <!--Collection related styles-->
+        <collectionstyles:AlbumCollectionStyle/>
+        <collectionstyles:PanePlaylistCollectionStyle/>
+        <collectionstyles:PlaylistCollectionStyle/>
+        <collectionstyles:TrackCollectionStyle/>
+        <collectionstyles:ArtistCollectionStyle/>
+
+
+        <!--Item related styles-->
+        <!--<ditemstyles:AlbumItemStyle/>
+        <ditemstyles:ArtistItemStyle/>
+        <ditemstyles:TrackItemStyle/>-->
+
+        
+        <!--NowPlaying related style-->
+        <nowplayingstyles:MediaInfoStyle/>
+        <nowplayingstyles:MediaTransportStyle/>
+
+        <!--Shell related styles-->
+        <styles:Media11NowPlayingBarStyle/>
+
+        <!--Page related styles-->
+        <pagestyles:Media11HomePageStyle/>
+        <pagestyles:Media11AlbumPageStyle/>
+        <pagestyles:Media11ArtistPageStyle/>
+        <pagestyles:Media11PlaylistPageStyle/>
+        <!--<dviewstyles:SettingsViewStyle/>-->
+
+
+        <!--Secondary view related styles-->
+        <!--<secondaryviewstyles:AlbumViewStyle/>
+        <dsecondaryviewstyles:ArtistViewStyle/>-->
+
+    </ResourceDictionary.MergedDictionaries>
+    
+</ResourceDictionary>

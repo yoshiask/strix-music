@@ -1,0 +1,19 @@
+﻿using StrixMusic.Sdk.WinUI.Controls.Collections;
+using Windows.UI.Xaml;
+
+namespace StrixMusic.Shells.Media11.Styles.Collections
+{
+    /// <summary>
+    /// A <see cref="ResourceDictionary"/> containing the default style for the <see cref="ArtistCollection"/>.
+    /// </summary>
+    public sealed partial class ArtistCollectionStyle : ResourceDictionary
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ArtistCollectionStyle"/> class.
+        /// </summary>
+        public ArtistCollectionStyle()
+        {
+            this.InitializeComponent();
+        }
+    }
+}

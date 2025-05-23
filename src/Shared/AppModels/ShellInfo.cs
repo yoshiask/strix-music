@@ -23,6 +23,11 @@ public static class ShellInfo
     public static ShellMetadata Sandbox { get; } = new(displayName: "Sandbox", description: "Used by devs to test and create default controls for other shells.");
 
     /// <summary>
+    /// The metadata for the Media 11 shell. Inspired by Aero and Windows Media Player 11.
+    /// </summary>
+    public static ShellMetadata Media11 { get; } = new(displayName: "Media 11", description: "Inspired by Aero and Windows Media Player 11.");
+
+    /// <summary>
     /// The metadata for all available shells.
     /// </summary>
     public static Dictionary<StrixMusicShells, ShellMetadata> All { get; } = new()
@@ -30,5 +35,6 @@ public static class ShellInfo
         { StrixMusicShells.Sandbox, Sandbox },
         { StrixMusicShells.GrooveMusic, GrooveMusic },
         { StrixMusicShells.ZuneDesktop, ZuneDesktop },
+        { StrixMusicShells.Media11, Media11 },
     };
 }

@@ -1,0 +1,53 @@
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using StrixMusic.Sdk.ViewModels;
+using StrixMusic.Shells.Media11.Messages.Navigation.Pages;
+
+namespace StrixMusic.Shells.Media11.ViewModels.Collections
+{
+    /// <summary>
+    /// A ViewModel for a <see cref="Controls.Collections.Media11AlbumCollection"/>.
+    /// </summary>
+    public class Media11AlbumCollectionViewModel : ObservableObject
+    {
+        private IAlbumCollectionViewModel? _albumCollectionViewModel;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Media11AlbumCollectionViewModel"/> class.
+        /// </summary>
+        public Media11AlbumCollectionViewModel()
+        {
+            NavigateToAlbumCommand = new RelayCommand<AlbumViewModel>(NavigateToAlbum);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Media11AlbumCollectionViewModel"/> class.
+        /// </summary>
+        public Media11AlbumCollectionViewModel(IAlbumCollectionViewModel viewModel)
+            : this()
+        {
+            AlbumCollection = viewModel;
+        }
+
+        /// <summary>
+        /// The <see cref="IAlbumCollectionViewModel"/> inside this ViewModel on display.
+        /// </summary>
+        public IAlbumCollectionViewModel? AlbumCollection
+        {
+            get => _albumCollectionViewModel;
+            set => SetProperty(ref _albumCollectionViewModel, value);
+        }
+
+        /// <summary>
+        /// A Command that requests a navigation to an album page.
+        /// </summary>
+        public RelayCommand<AlbumViewModel> NavigateToAlbumCommand { get; private set; }
+
+        private void NavigateToAlbum(AlbumViewModel? viewModel)
+        {
+            if (viewModel != null)
+                WeakReferenceMessenger.Default.Send(new AlbumViewNavigationRequestMessage(viewModel));
+        }
+    }
+}
