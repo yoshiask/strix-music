@@ -68,6 +68,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -102,12 +103,30 @@
             </tkcontrols:Segmented>
         </Border>
 
+        <Grid Grid.Row="2" Height="30"
+              BorderThickness="0,0,0,1" BorderBrush="Black"
+              Background="#AA222222">
+            <Border Background="{ThemeResource GlassTubeMediumBackgroundBrush}"
+                    BorderThickness="0,0,0,1" BorderBrush="#404040"/>
+
+            <Button HorizontalAlignment="Left" Padding="8,0" FontSize="12"
+                    Background="Transparent" Height="24" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xF8AA;"
+                              FontSize="12" Foreground="{ThemeResource DiagonalAccentBackgroundBrush}"/>
+                    <TextBlock Text="Create Playlist"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+
+        <Border Grid.Row="3" Background="#222222">
         <ContentControl x:Name="MainContent"
-                        Grid.Row="2" HorizontalContentAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
                         ContentTemplateSelector="{StaticResource MainContentTemplateSelector}" />
+        </Border>
 
         <controls:Media11NowPlayingBar
-            Grid.Row="3"
+            Grid.Row="4"
             Background="Transparent"
             BackgroundColor="Transparent"
             Height="96"
