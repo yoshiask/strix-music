@@ -73,6 +73,8 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
+        <Border x:Name="ShadowLayer" Grid.RowSpan="5"/>
+
         <Grid x:Name="CustomTitleBarBorder" Height="32">
             <Image Source="https://github.com/Arlodotexe/strix-music/raw/refs/heads/main/www/favicon.ico"
                    HorizontalAlignment="Left" Margin="6"/>
@@ -80,10 +82,17 @@
             <TextBlock x:Uid="/Resources/AppNameTB"
                        Margin="32,0,0,0"
                        VerticalAlignment="Center"
-                       FontSize="12"
-                       FontWeight="SemiLight" />
+                       FontSize="14"
+                       TextLineBounds="Tight">
+                       <!--Foreground="{ThemeResource SystemAltHighColor}">-->
+                <!--<toolkit:Effects.Shadow>
+                    <toolkit:AttachedDropShadow CastTo="{x:Bind ShadowLayer}"
+                                                IsMasked="True"
+                                                Offset="0" BlurRadius="18" Color="White" />
+                </toolkit:Effects.Shadow>-->
+            </TextBlock>
         </Grid>
-        <!--Background="{ThemeResource SystemControlBackgroundChromeMediumBrush}"-->
+        
         <Border Grid.Row="1"
                 BorderThickness="0" BorderBrush="{ThemeResource SystemControlBackgroundBaseLowBrush}" CornerRadius="2"/>
         <Border Grid.Row="1" Margin="1"
@@ -92,7 +101,7 @@
         <Border Grid.Row="1" VerticalAlignment="Top" Height="41"
                 BorderThickness="1" BorderBrush="{ThemeResource GlassTubeMediumBorderBrush}"
                 Background="{ThemeResource GlassTubeMediumBackgroundBrush}">
-            <tkcontrols:Segmented HorizontalAlignment="Center"
+            <tkcontrols:Segmented HorizontalAlignment="Center" Style="{StaticResource GlassNavigationSegmentedStyle}"
                                   SelectedIndex="2" SelectionMode="Single"
                                   SelectionChanged="Segmented_SelectionChanged">
                 <tkcontrols:SegmentedItem Content="Now Playing" />
@@ -120,9 +129,9 @@
         </Grid>
 
         <Border Grid.Row="3" Background="#222222">
-        <ContentControl x:Name="MainContent"
+            <ContentControl x:Name="MainContent"
                             HorizontalContentAlignment="Stretch"
-                        ContentTemplateSelector="{StaticResource MainContentTemplateSelector}" />
+                            ContentTemplateSelector="{StaticResource MainContentTemplateSelector}" />
         </Border>
 
         <controls:Media11NowPlayingBar

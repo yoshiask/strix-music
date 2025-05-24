@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:converters="using:StrixMusic.Sdk.WinUI.Converters"
     xmlns:styles="using:StrixMusic.Shells.Media11.Styles"
     xmlns:collectionstyles="using:StrixMusic.Shells.Media11.Styles.Collections"
     xmlns:nowplayingstyles="using:StrixMusic.Shells.Media11.Styles.NowPlaying"
@@ -18,6 +17,7 @@
         <ResourceDictionary Source="ms-appx:///StrixMusic.Shells.Media11/Resources/TextBoxStyles.xaml"/>
         <ResourceDictionary Source="ms-appx:///StrixMusic.Shells.Media11/Styles/NowPlaying/MediaSliderStyle.xaml"/>
         <ResourceDictionary Source="ms-appx:///StrixMusic.Shells.Media11/Styles/PivotStyle.xaml"/>
+        <ResourceDictionary Source="ms-appx:///StrixMusic.Shells.Media11/Styles/GlassNavigationSegmentedStyle.xaml"/>
 
 
         <!--Collection related styles-->
