@@ -114,20 +114,42 @@
                                     </VisualState>
                                     <VisualState x:Name="Pressed">
                                         <Storyboard>
-                                            <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Root"
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerShadow"
                                                                            Storyboard.TargetProperty="Background">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{ThemeResource ButtonItemBackgroundPressed}" />
-                                            </ObjectAnimationUsingKeyFrames>-->
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentPresenter"
-                                                                           Storyboard.TargetProperty="Foreground">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{ThemeResource ButtonItemForegroundPressed}" />
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" MappingMode="RelativeToBoundingBox">
+                                                            <GradientStop Color="#33000000" Offset="0" />
+                                                            <GradientStop Color="#11000000" Offset="0.37" />
+                                                            <GradientStop Color="#44000000" Offset="0.37" />
+                                                            <GradientStop Color="#33000000" Offset="1" />
+                                                        </LinearGradientBrush>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconPresenter"
-                                                                           Storyboard.TargetProperty="Foreground">
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerShadow"
+                                                                           Storyboard.TargetProperty="BorderBrush">
                                                 <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{ThemeResource ButtonItemForegroundPressed}" />
+                                                                        Value="Black" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DarkOutline"
+                                                                           Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <media:RadialGradientBrush
+                                                                Center="0.5,0.5"
+                                                                RadiusX="1" RadiusY="1"
+                                                                GradientOrigin="0.5,1.5">
+                                                            <GradientStop Color="{ThemeResource SystemAccentColorLight1}" Offset="0.0" />
+                                                            <GradientStop Color="#00000000" Offset="0.85" />
+                                                        </media:RadialGradientBrush>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DarkOutline"
+                                                                           Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="#44000000" />
                                             </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualState>
@@ -172,61 +194,117 @@
                                                 <DiscreteObjectKeyFrame KeyTime="0">
                                                     <DiscreteObjectKeyFrame.Value>
                                                         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" MappingMode="RelativeToBoundingBox">
-                                                            <GradientStop Color="#33FFFFFF" Offset="0" />
-                                                            <GradientStop Color="#11FFFFFF" Offset="0.37" />
-                                                            <GradientStop Color="#44000000" Offset="0.37" />
-                                                            <GradientStop Color="#33000000" Offset="1" />
+                                                            <GradientStop Color="#19FFFFFF" Offset="0" />
+                                                            <GradientStop Color="#08FFFFFF" Offset="0.37" />
+                                                            <GradientStop Color="#22000000" Offset="0.37" />
+                                                            <GradientStop Color="#19000000" Offset="1" />
                                                         </LinearGradientBrush>
                                                     </DiscreteObjectKeyFrame.Value>
                                                 </DiscreteObjectKeyFrame>
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentPresenter"
-                                                                           Storyboard.TargetProperty="Foreground">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="White" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconPresenter"
-                                                                           Storyboard.TargetProperty="Foreground">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="White" />
                                             </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualState>
                                     <VisualState x:Name="PointerOverSelected">
                                         <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Root"
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DarkOutline"
+                                                                           Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <media:RadialGradientBrush
+                                                                Center="0.5,0.5"
+                                                                RadiusX="1" RadiusY="1"
+                                                                GradientOrigin="0.5,1.5">
+                                                            <GradientStop Color="#AAFFFFFF" Offset="0.0" />
+                                                            <GradientStop Color="#00FFFFFF" Offset="0.85" />
+                                                            <GradientStop Color="#33000000" Offset="1.0" />
+                                                        </media:RadialGradientBrush>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundFill"
                                                                            Storyboard.TargetProperty="Background">
                                                 <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{ThemeResource ButtonItemBackgroundSelectedPointerOver}" />
+                                                                        Value="{ThemeResource SystemAccentColorDark1}" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentPresenter"
-                                                                           Storyboard.TargetProperty="Foreground">
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Root"
+                                                                           Storyboard.TargetProperty="BorderBrush">
                                                 <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{ThemeResource ButtonItemForegroundSelectedPointerOver}" />
+                                                                        Value="#55FFFFFF" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconPresenter"
-                                                                           Storyboard.TargetProperty="Foreground">
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DarkOutline"
+                                                                           Storyboard.TargetProperty="BorderBrush">
                                                 <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{ThemeResource ButtonItemForegroundSelectedPointerOver}" />
+                                                                        Value="#44000000" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerShadow"
+                                                                           Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="Black" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerShadow"
+                                                                           Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" MappingMode="RelativeToBoundingBox">
+                                                            <GradientStop Color="#19FFFFFF" Offset="0" />
+                                                            <GradientStop Color="#08FFFFFF" Offset="0.37" />
+                                                            <GradientStop Color="#22000000" Offset="0.37" />
+                                                            <GradientStop Color="#19000000" Offset="1" />
+                                                        </LinearGradientBrush>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
                                             </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualState>
                                     <VisualState x:Name="PressedSelected">
                                         <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Root"
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DarkOutline"
+                                                                           Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <media:RadialGradientBrush
+                                                                Center="0.5,0.5"
+                                                                RadiusX="1" RadiusY="1"
+                                                                GradientOrigin="0.5,1.5">
+                                                            <GradientStop Color="#AAFFFFFF" Offset="0.0" />
+                                                            <GradientStop Color="#00FFFFFF" Offset="0.85" />
+                                                            <GradientStop Color="#33000000" Offset="1.0" />
+                                                        </media:RadialGradientBrush>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundFill"
                                                                            Storyboard.TargetProperty="Background">
                                                 <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{ThemeResource ButtonItemBackgroundSelectedPressed}" />
+                                                                        Value="{ThemeResource SystemAccentColorLight1}" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_ContentPresenter"
-                                                                           Storyboard.TargetProperty="Foreground">
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Root"
+                                                                           Storyboard.TargetProperty="BorderBrush">
                                                 <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{ThemeResource ButtonItemForegroundSelectedPressed}" />
+                                                                        Value="#55FFFFFF" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_IconPresenter"
-                                                                           Storyboard.TargetProperty="Foreground">
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DarkOutline"
+                                                                           Storyboard.TargetProperty="BorderBrush">
                                                 <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{ThemeResource ButtonItemForegroundSelectedPressed}" />
+                                                                        Value="#44000000" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerShadow"
+                                                                           Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="Black" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerShadow"
+                                                                           Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" MappingMode="RelativeToBoundingBox">
+                                                            <GradientStop Color="#19FFFFFF" Offset="0" />
+                                                            <GradientStop Color="#08FFFFFF" Offset="0.37" />
+                                                            <GradientStop Color="#11000000" Offset="0.37" />
+                                                            <GradientStop Color="#08000000" Offset="1" />
+                                                        </LinearGradientBrush>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
                                             </ObjectAnimationUsingKeyFrames>
                                         </Storyboard>
                                     </VisualState>
