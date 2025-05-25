@@ -37,6 +37,8 @@
   <ItemGroup>
     <None Remove="LICENSE.txt" />
     <None Remove="Preview.xaml" />
+    <None Remove="Resources\Ripple.png" />
+    <None Remove="Resources\Specular.png" />
     <None Remove="Styles\Collections\ArtistCollectionStyle.xaml" />
     <None Remove="Styles\Pages\Media11AlbumPageStyle.xaml" />
     <None Remove="Styles\Pages\Media11ArtistPageStyle.xaml" />
@@ -63,6 +65,10 @@
     <UpToDateCheckInput Remove="Style\MediaSlider.xaml" />
     <UpToDateCheckInput Remove="Style\NowPlayingBarStyle.xaml" />
     <UpToDateCheckInput Remove="Style\PlayableCollectionGroupPivotStyle.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Ripple.png" />
+    <Content Include="Resources\Specular.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Libs\OwlCore.WinUI\OwlCore.WinUI.csproj" />
