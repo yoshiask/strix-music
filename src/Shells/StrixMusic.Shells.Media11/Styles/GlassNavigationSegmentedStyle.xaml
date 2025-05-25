@@ -176,8 +176,14 @@
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Root"
                                                                            Storyboard.TargetProperty="BorderBrush">
-                                                <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="#55FFFFFF" />
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" MappingMode="RelativeToBoundingBox">
+                                                            <GradientStop Color="#40FFFFFF" Offset="0" />
+                                                            <GradientStop Color="#00FFFFFF" Offset="1" />
+                                                        </LinearGradientBrush>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DarkOutline"
                                                                            Storyboard.TargetProperty="BorderBrush">
@@ -229,7 +235,7 @@
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Root"
                                                                            Storyboard.TargetProperty="BorderBrush">
                                                 <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="#55FFFFFF" />
+                                                                        Value="#40FFFFFF" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DarkOutline"
                                                                            Storyboard.TargetProperty="BorderBrush">
@@ -281,7 +287,7 @@
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Root"
                                                                            Storyboard.TargetProperty="BorderBrush">
                                                 <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="#55FFFFFF" />
+                                                                        Value="#40FFFFFF" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetName="DarkOutline"
                                                                            Storyboard.TargetProperty="BorderBrush">
