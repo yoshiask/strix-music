@@ -19,6 +19,7 @@
         <ResourceDictionary Source="ms-appx:///StrixMusic.Shells.Media11/Styles/PivotStyle.xaml"/>
         <ResourceDictionary Source="ms-appx:///StrixMusic.Shells.Media11/Styles/GlassNavigationSegmentedStyle.xaml"/>
         <ResourceDictionary Source="ms-appx:///StrixMusic.Shells.Media11/Styles/GlassButtonStyle.xaml"/>
+        <ResourceDictionary Source="ms-appx:///StrixMusic.Shells.Media11/Styles/GlassRoundButtonStyle.xaml"/>
 
 
         <!--Collection related styles-->
