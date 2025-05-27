@@ -4,10 +4,8 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:behaviors="using:OwlCore.WinUI.Behaviors"
 	xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-	xmlns:core="using:Microsoft.Xaml.Interactions.Core"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-	xmlns:labs="using:CommunityToolkit.Labs.WinUI"
 	xmlns:local="using:StrixMusic.Controls.Settings.MusicSources.ConnectNew.OneDriveCore"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
@@ -18,9 +16,9 @@
 		Margin="20"
 		RowSpacing="20">
 		<interactivity:Interaction.Behaviors>
-			<core:EventTriggerBehavior EventName="Loaded">
-				<core:InvokeCommandAction Command="{x:Bind StartDeviceCodeAuthCommand}" />
-			</core:EventTriggerBehavior>
+            <interactivity:EventTriggerBehavior EventName="Loaded">
+                <interactivity:InvokeCommandAction Command="{x:Bind StartDeviceCodeAuthCommand}" />
+			</interactivity:EventTriggerBehavior>
 		</interactivity:Interaction.Behaviors>
 
 		<Grid.RowDefinitions>
@@ -77,9 +75,9 @@
 
 				<Button Padding="8" VerticalAlignment="Center">
 					<interactivity:Interaction.Behaviors>
-						<core:EventTriggerBehavior EventName="Click">
+                        <interactivity:EventTriggerBehavior EventName="Click">
 							<behaviors:OpenUriAction Source="{x:Bind StringToUri(DeviceCodeResult.VerificationUrl), Mode=OneWay}" />
-						</core:EventTriggerBehavior>
+						</interactivity:EventTriggerBehavior>
 					</interactivity:Interaction.Behaviors>
 					<StackPanel Orientation="Horizontal" Spacing="5">
 						<FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE8A7;" />
