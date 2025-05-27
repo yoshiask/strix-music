@@ -64,7 +64,7 @@
     </sdkctrls:Shell.Resources>
 
     <Border Background="{ThemeResource PaneHostBackgroundBrush}">
-        <Grid Padding="8" CornerRadius="7"
+        <Grid Padding="0" CornerRadius="7"
               BorderThickness="1" BorderBrush="{ThemeResource SystemControlBackgroundBaseLowBrush}">
 
             <Grid.Background>
@@ -118,7 +118,7 @@
                 </tkcontrols:Segmented>
             </Border>
 
-            <Grid Grid.Row="1" HorizontalAlignment="Left" Margin="8,0,0,0">
+            <StackPanel Grid.Row="1" HorizontalAlignment="Left" Margin="8,0,0,0" Spacing="6" Orientation="Horizontal">
                 <Button Style="{StaticResource GlassRoundButtonStyle}">
                     <Viewbox VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Path Data="M14.5 7.6029H4M7.7751 2.5 2.5 7.6029M2.5 7.6029 7.5533 12.5"
@@ -132,7 +132,21 @@
                         </Path>
                     </Viewbox>
                 </Button>
-            </Grid>
+                
+                <Button Style="{StaticResource GlassRoundButtonStyle}" IsEnabled="False">
+                    <Viewbox VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Path Data="M2.5 7.6029H13M9.2249 2.5 14.5 7.6029M14.5 7.6029 9.4467 12.5"
+                              StrokeThickness="3.5" StrokeStartLineCap="Round" StrokeEndLineCap="Round">
+                            <Path.Stroke>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,0.8">
+                                    <GradientStop Color="#FFFFFF" Offset="0.5"/>
+                                    <GradientStop Color="#CFCFCF" Offset="1.0"/>
+                                </LinearGradientBrush>
+                            </Path.Stroke>
+                        </Path>
+                    </Viewbox>
+                </Button>
+            </StackPanel>
 
             <Grid Grid.Row="2" Height="30"
                   BorderThickness="0,0,0,1" BorderBrush="Black"
