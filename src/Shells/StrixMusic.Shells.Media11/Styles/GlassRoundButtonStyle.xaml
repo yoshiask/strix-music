@@ -22,11 +22,11 @@
                     <Grid x:Name="RootGrid">
                         <Viewbox Grid.Row="1" HorizontalAlignment="Left" Height="24">
                             <Canvas Height="30" Width="30">
-                                <Ellipse Height="30" Width="30" StrokeThickness="{TemplateBinding BorderThickness}">
+                                <Ellipse x:Name="Ball" Height="30" Width="30" StrokeThickness="{TemplateBinding BorderThickness}">
                                     <Ellipse.Fill>
                                         <media:RadialGradientBrush GradientOrigin="0.5,1.0" RadiusX="1.0" RadiusY="1.0" MappingMode="RelativeToBoundingBox">
-                                            <GradientStop Color="{ThemeResource SystemAccentColorLight3}" Offset="0.0"/>
-                                            <GradientStop Color="{ThemeResource SystemAccentColorDark2}" Offset="1.0"/>
+                                            <GradientStop Color="{ThemeResource SystemAccentColorLight2}" Offset="0.0"/>
+                                            <GradientStop Color="{ThemeResource SystemAccentColorDark3}" Offset="1.0"/>
                                         </media:RadialGradientBrush>
                                     </Ellipse.Fill>
                                     <Ellipse.Stroke>
@@ -40,13 +40,13 @@
                                     </Ellipse.Stroke>
                                 </Ellipse>
 
-                                <Path Data="M1,15 C 6,16 2,13.75 15,13.75 C 28,13.75 24,16 29,15 C 29,7.5 23,1 15,1 C 6,1 1,8.5 1,15 Z">
+                                <Path x:Name="Shine" Data="M1,15 C 6,16 2,13.75 15,13.75 C 28,13.75 24,16 29,15 C 29,7.5 23,1 15,1 C 6,1 1,8.5 1,15 Z">
                                     <Path.Fill>
                                         <media:RadialGradientBrush GradientOrigin="14,15" Center="14,20"
                                                                    RadiusX="15" RadiusY="17"
                                                                    MappingMode="Absolute">
-                                            <GradientStop Color="#33FFFFFF" Offset="0.5"/>
-                                            <GradientStop Color="#55FFFFFF" Offset="1.0"/>
+                                            <GradientStop Color="#44FFFFFF" Offset="0.5"/>
+                                            <GradientStop Color="#66FFFFFF" Offset="1.0"/>
                                         </media:RadialGradientBrush>
                                     </Path.Fill>
                                 </Path>
@@ -74,68 +74,98 @@
                                 <VisualState x:Name="Normal"/>
                                 <VisualState x:Name="PointerOver">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                                       Storyboard.TargetProperty="Background">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Ball"
+                                                                       Storyboard.TargetProperty="Fill">
                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                 <DiscreteObjectKeyFrame.Value>
-                                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" MappingMode="RelativeToBoundingBox">
-                                                        <GradientStop Color="#22FFFFFF" Offset="0" />
-                                                        <GradientStop Color="#11FFFFFF" Offset="0.25" />
-                                                        <GradientStop Color="#00FFFFFF" Offset="0.75" />
-                                                    </LinearGradientBrush>
+                                                    <media:RadialGradientBrush GradientOrigin="0.5,1.0" RadiusX="1.0" RadiusY="1.0" MappingMode="RelativeToBoundingBox">
+                                                        <GradientStop Color="{ThemeResource SystemAccentColorLight2}" Offset="0.0"/>
+                                                        <GradientStop Color="{ThemeResource SystemAccentColorDark1}" Offset="1.0"/>
+                                                    </media:RadialGradientBrush>
                                                 </DiscreteObjectKeyFrame.Value>
                                             </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                                       Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#33FFFFFF" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
-                                                                       Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#40000000" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Shine"
+                                                                       Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <media:RadialGradientBrush GradientOrigin="14,15" Center="14,20"
+                                                                               RadiusX="15" RadiusY="17"
+                                                                               MappingMode="Absolute">
+                                                        <GradientStop Color="#55FFFFFF" Offset="0.5"/>
+                                                        <GradientStop Color="#77FFFFFF" Offset="1.0"/>
+                                                    </media:RadialGradientBrush>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
 
                                 <VisualState x:Name="Pressed">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                                       Storyboard.TargetProperty="Background">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Ball"
+                                                                       Storyboard.TargetProperty="Fill">
                                             <DiscreteObjectKeyFrame KeyTime="0">
                                                 <DiscreteObjectKeyFrame.Value>
-                                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" MappingMode="RelativeToBoundingBox">
-                                                        <GradientStop Color="#22FFFFFF" Offset="0" />
-                                                        <GradientStop Color="#11FFFFFF" Offset="0.25" />
-                                                        <GradientStop Color="#00FFFFFF" Offset="0.75" />
-                                                    </LinearGradientBrush>
+                                                    <media:RadialGradientBrush GradientOrigin="0.5,1.0" RadiusX="1.0" RadiusY="1.0" MappingMode="RelativeToBoundingBox">
+                                                        <GradientStop Color="{ThemeResource SystemAccentColorLight1}" Offset="0.0"/>
+                                                        <GradientStop Color="{ThemeResource SystemAccentColorDark3}" Offset="1.0"/>
+                                                    </media:RadialGradientBrush>
                                                 </DiscreteObjectKeyFrame.Value>
                                             </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                                       Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#33000000" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-                                                                       Storyboard.TargetProperty="BorderThickness">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="1,1,0,0" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
-                                                                       Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="#88000000" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Shine"
+                                                                       Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <media:RadialGradientBrush GradientOrigin="14,15" Center="14,20"
+                                                                               RadiusX="15" RadiusY="17"
+                                                                               MappingMode="Absolute">
+                                                        <GradientStop Color="#55FFFFFF" Offset="0.5"/>
+                                                        <GradientStop Color="#77FFFFFF" Offset="1.0"/>
+                                                    </media:RadialGradientBrush>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
 
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AccentButtonBackgroundDisabled}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                                       Storyboard.TargetProperty="Opacity">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="0.75" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AccentButtonBorderBrushDisabled}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Ball"
+                                                                       Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="Transparent" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AccentButtonForegroundDisabled}" />
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Ball"
+                                                                       Storyboard.TargetProperty="Stroke">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" MappingMode="RelativeToBoundingBox">
+                                                        <GradientStop Color="#82000000" Offset="0.00" />
+                                                        <GradientStop Color="#5E000000" Offset="0.40" />
+                                                        <GradientStop Color="#3F000000" Offset="0.75" />
+                                                        <GradientStop Color="#32000000" Offset="0.87" />
+                                                        <GradientStop Color="#2E000000" Offset="1.00" />
+                                                    </LinearGradientBrush>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Shine"
+                                                                       Storyboard.TargetProperty="Fill">
+                                            <DiscreteObjectKeyFrame KeyTime="0">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <media:RadialGradientBrush GradientOrigin="14,15" Center="14,20"
+                                                                               RadiusX="15" RadiusY="17"
+                                                                               MappingMode="Absolute">
+                                                        <GradientStop Color="#44FFFFFF" Offset="0.5"/>
+                                                        <GradientStop Color="#77FFFFFF" Offset="1.0"/>
+                                                    </media:RadialGradientBrush>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
