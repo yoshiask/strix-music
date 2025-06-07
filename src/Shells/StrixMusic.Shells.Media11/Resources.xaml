@@ -12,6 +12,7 @@
     xmlns:dsecondaryviewstyles="using:StrixMusic.Sdk.WinUI.Styles.Views.Secondary">
     
     <ResourceDictionary.MergedDictionaries>
+        <AccentColorEffectResourceDictionary xmlns="using:StrixMusic.Shells.Media11"/>
         <ResourceDictionary Source="ms-appx:///StrixMusic.Shells.Media11/Resources/Brushes.xaml"/>
         <ResourceDictionary Source="ms-appx:///StrixMusic.Shells.Media11/Resources/ButtonStyles.xaml"/>
         <ResourceDictionary Source="ms-appx:///StrixMusic.Shells.Media11/Resources/TextBoxStyles.xaml"/>
