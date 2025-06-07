@@ -6,6 +6,7 @@
 	xmlns:color="using:OwlCore.WinUI.Converters.Color"
 	xmlns:controls="using:StrixMusic.Controls"
 	xmlns:controls1="using:Microsoft.Toolkit.Uwp.UI.Controls"
+	xmlns:core="using:Microsoft.Xaml.Interactions.Core"
 	xmlns:coremodels="using:StrixMusic.Sdk.CoreModels"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
@@ -45,9 +46,9 @@
 
 	<Grid x:Name="RootGrid">
 		<interactivity:Interaction.Behaviors>
-            <interactivity:EventTriggerBehavior EventName="Loaded">
-                <interactivity:InvokeCommandAction Command="{x:Bind AppRoot.InitCommand}" />
-			</interactivity:EventTriggerBehavior>
+			<core:EventTriggerBehavior EventName="Loaded">
+				<core:InvokeCommandAction Command="{x:Bind AppRoot.InitCommand}" />
+			</core:EventTriggerBehavior>
 		</interactivity:Interaction.Behaviors>
 
 		<controls:ShellPresenter
@@ -220,18 +221,18 @@
 				Glyph="&#xE115;" />
 
 			<interactivity:Interaction.Behaviors>
-                <interactivity:DataTriggerBehavior
+				<core:DataTriggerBehavior
 					Binding="{x:Bind OpenSettingsUIToggleButton.IsChecked, Mode=OneWay}"
 					ComparisonCondition="Equal"
 					Value="True">
-                    <interactivity:GoToStateAction StateName="SettingsDialogVisible" />
-				</interactivity:DataTriggerBehavior>
-                <interactivity:DataTriggerBehavior
+					<core:GoToStateAction StateName="SettingsDialogVisible" />
+				</core:DataTriggerBehavior>
+				<core:DataTriggerBehavior
 					Binding="{x:Bind OpenSettingsUIToggleButton.IsChecked, Mode=OneWay}"
 					ComparisonCondition="Equal"
 					Value="False">
-                    <interactivity:GoToStateAction StateName="SettingsDialogHidden" />
-				</interactivity:DataTriggerBehavior>
+					<core:GoToStateAction StateName="SettingsDialogHidden" />
+				</core:DataTriggerBehavior>
 			</interactivity:Interaction.Behaviors>
 		</ToggleButton>
 
