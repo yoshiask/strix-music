@@ -188,5 +188,10 @@ namespace StrixMusic.Shells.Media11
                     break;
             }
         }
+
+        private void NavigationBackButton_Click(object sender, RoutedEventArgs e)
+        {
+            _navigationTracker.NavigateBackwards();
+        }
     }
 }

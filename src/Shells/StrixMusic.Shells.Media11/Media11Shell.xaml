@@ -145,7 +145,7 @@
                 </Path>
                 
                 <StackPanel Spacing="6" Orientation="Horizontal">
-                    <Button Style="{StaticResource GlassRoundButtonStyle}">
+                    <Button Click="NavigationBackButton_Click" Style="{StaticResource GlassRoundButtonStyle}">
                         <Viewbox VerticalAlignment="Center" HorizontalAlignment="Center">
                             <Path Data="M14.5 7.6029H4M7.7751 2.5 2.5 7.6029M2.5 7.6029 7.5533 12.5"
                                   StrokeThickness="3.5" StrokeStartLineCap="Round" StrokeEndLineCap="Round">
