@@ -9,10 +9,12 @@
     xmlns:convertnumtime="using:OwlCore.WinUI.Converters.Time.Numerical"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:tkcontrols="using:CommunityToolkit.WinUI.Controls"
     x:Class="StrixMusic.Shells.Media11.Styles.NowPlaying.MediaTransportStyle">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="ms-appx:///StrixMusic.Shells.Media11/Resources/ButtonStyles.xaml" />
+        <ResourceDictionary Source="ms-appx:///StrixMusic.Shells.Media11/Styles/GlassRoundButtonStyle.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="Media11MediaTransportStyle" TargetType="nowplaying:MediaTransports">
@@ -39,17 +41,30 @@
                                 </interactivity:Interaction.Behaviors>
                                 <FontIcon Glyph="&#xE100;" FontFamily="{ThemeResource SymbolThemeFontFamily}"/>
                             </Button>
-                            <owlcoreuno:ToggleContentButton Style="{StaticResource PlayPauseToggleContentButton}" IsChecked="{Binding Device.IsPlaying, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=OneWay}">
+
+                            <Button Height="41" Width="41" BorderThickness="0.5" Style="{StaticResource GlassRoundButtonStyle}">
                                 <interactivity:Interaction.Behaviors>
                                     <core:EventTriggerBehavior EventName="Click">
                                         <core:InvokeCommandAction Command="{Binding Device.TogglePauseResumeCommand, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=OneWay}" />
                                     </core:EventTriggerBehavior>
                                 </interactivity:Interaction.Behaviors>
-                                <owlcoreuno:ToggleContentButton.CheckedContent>
-                                    <FontIcon Glyph="&#xE103;" FontFamily="{ThemeResource SymbolThemeFontFamily}"/>
-                                </owlcoreuno:ToggleContentButton.CheckedContent>
-                                <FontIcon Glyph="&#xE102;" FontFamily="{ThemeResource SymbolThemeFontFamily}"/>
-                            </owlcoreuno:ToggleContentButton>
+
+                                <tkcontrols:SwitchPresenter Value="{Binding Device.IsPlaying, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=OneWay}">
+                                    <tkcontrols:Case>
+                                        <tkcontrols:Case.Value>
+                                            <x:Boolean>False</x:Boolean>
+                                        </tkcontrols:Case.Value>
+                                        <FontIcon Glyph="&#xE102;" FontFamily="{ThemeResource SymbolThemeFontFamily}"/>
+                                    </tkcontrols:Case>
+                                    <tkcontrols:Case>
+                                        <tkcontrols:Case.Value>
+                                            <x:Boolean>True</x:Boolean>
+                                        </tkcontrols:Case.Value>
+                                        <FontIcon Glyph="&#xE103;" FontFamily="{ThemeResource SymbolThemeFontFamily}"/>
+                                    </tkcontrols:Case>
+                                </tkcontrols:SwitchPresenter>
+                            </Button>
+                            
                             <Button Style="{StaticResource MediaButton}">
                                 <interactivity:Interaction.Behaviors>
                                     <core:EventTriggerBehavior EventName="Click">
