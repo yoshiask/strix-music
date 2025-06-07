@@ -73,7 +73,7 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="40"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
@@ -104,7 +104,7 @@
             <Border Grid.Row="1" Margin="1"
                     BorderThickness="0" BorderBrush="{ThemeResource SystemControlBackgroundAltMediumHighBrush}" CornerRadius="1"/>
 
-            <Border Grid.Row="1" VerticalAlignment="Top" Height="41"
+            <Border Grid.Row="1" VerticalAlignment="Top"
                     BorderThickness="1" BorderBrush="{ThemeResource GlassTubeMediumBorderBrush}"
                     Background="{ThemeResource GlassTubeMediumBackgroundBrush}">
                 <tkcontrols:Segmented HorizontalAlignment="Center" Style="{StaticResource GlassNavigationSegmentedStyle}"
@@ -118,35 +118,62 @@
                 </tkcontrols:Segmented>
             </Border>
 
-            <StackPanel Grid.Row="1" HorizontalAlignment="Left" Margin="8,0,0,0" Spacing="6" Orientation="Horizontal">
-                <Button Style="{StaticResource GlassRoundButtonStyle}">
-                    <Viewbox VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Path Data="M14.5 7.6029H4M7.7751 2.5 2.5 7.6029M2.5 7.6029 7.5533 12.5"
-                              StrokeThickness="3.5" StrokeStartLineCap="Round" StrokeEndLineCap="Round">
-                            <Path.Stroke>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,0.8">
-                                    <GradientStop Color="#FFFFFF" Offset="0.5"/>
-                                    <GradientStop Color="#CFCFCF" Offset="1.0"/>
-                                </LinearGradientBrush>
-                            </Path.Stroke>
-                        </Path>
-                    </Viewbox>
-                </Button>
+            <Grid Grid.Row="1" HorizontalAlignment="Left" Margin="8,0,0,0">
+                <Path Margin="12,0,0,0" VerticalAlignment="Center">
+                    <Path.Data>
+                        <PathGeometry>
+                            <PathFigure>
+                                <ArcSegment Size="15,15" Point="0,30" RotationAngle="0" />
+                                <LineSegment Point="30,30" />
+                                <ArcSegment Size="15,15" Point="30,0" RotationAngle="0" />
+                                <LineSegment />
+                            </PathFigure>
+                        </PathGeometry>
+                    </Path.Data>
+                    <Path.Fill>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,0.4">
+                            <GradientStop Color="#77000000" Offset="0.0"/>
+                            <GradientStop Color="#00000000" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Path.Fill>
+                    <Path.Stroke>
+                        <LinearGradientBrush StartPoint="0,0.6" EndPoint="0,1.0">
+                            <GradientStop Color="#00FFFFFF" Offset="0.0"/>
+                            <GradientStop Color="#55FFFFFF" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Path.Stroke>
+                </Path>
                 
-                <Button Style="{StaticResource GlassRoundButtonStyle}" IsEnabled="False">
-                    <Viewbox VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <Path Data="M2.5 7.6029H13M9.2249 2.5 14.5 7.6029M14.5 7.6029 9.4467 12.5"
-                              StrokeThickness="3.5" StrokeStartLineCap="Round" StrokeEndLineCap="Round">
-                            <Path.Stroke>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,0.8">
-                                    <GradientStop Color="#FFFFFF" Offset="0.5"/>
-                                    <GradientStop Color="#CFCFCF" Offset="1.0"/>
-                                </LinearGradientBrush>
-                            </Path.Stroke>
-                        </Path>
-                    </Viewbox>
-                </Button>
-            </StackPanel>
+                <StackPanel Spacing="6" Orientation="Horizontal">
+                    <Button Style="{StaticResource GlassRoundButtonStyle}">
+                        <Viewbox VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Path Data="M14.5 7.6029H4M7.7751 2.5 2.5 7.6029M2.5 7.6029 7.5533 12.5"
+                                  StrokeThickness="3.5" StrokeStartLineCap="Round" StrokeEndLineCap="Round">
+                                <Path.Stroke>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,0.8">
+                                        <GradientStop Color="#FFFFFF" Offset="0.5"/>
+                                        <GradientStop Color="#CFCFCF" Offset="1.0"/>
+                                    </LinearGradientBrush>
+                                </Path.Stroke>
+                            </Path>
+                        </Viewbox>
+                    </Button>
+
+                    <Button Style="{StaticResource GlassRoundButtonStyle}" IsEnabled="False">
+                        <Viewbox VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Path Data="M2.5 7.6029H13M9.2249 2.5 14.5 7.6029M14.5 7.6029 9.4467 12.5"
+                                  StrokeThickness="3.5" StrokeStartLineCap="Round" StrokeEndLineCap="Round">
+                                <Path.Stroke>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,0.8">
+                                        <GradientStop Color="#FFFFFF" Offset="0.5"/>
+                                        <GradientStop Color="#CFCFCF" Offset="1.0"/>
+                                    </LinearGradientBrush>
+                                </Path.Stroke>
+                            </Path>
+                        </Viewbox>
+                    </Button>
+                </StackPanel>
+            </Grid>
 
             <Grid Grid.Row="2" Height="30"
                   BorderThickness="0,0,0,1" BorderBrush="Black"
