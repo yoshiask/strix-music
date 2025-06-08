@@ -207,6 +207,19 @@
                                 ContentTemplateSelector="{StaticResource MainContentTemplateSelector}" />
             </Border>
 
+            <StackPanel Grid.Row="0" VerticalAlignment="Top" Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style TargetType="Rectangle">
+                        <Setter Property="Height" Value="32"/>
+                        <Setter Property="Width" Value="20"/>
+                    </Style>
+                </StackPanel.Resources>
+                <Rectangle Fill="{ThemeResource SystemAccentColor}"/>
+                <!--<Rectangle Fill="{ThemeResource SystemAccentColor_Test}"/>-->
+                <!--<Rectangle Fill="{ThemeResource SystemAccentColor_HighlightT}"/>-->
+                <Rectangle Fill="{ThemeResource SystemAccentColor_Highlight}"/>
+            </StackPanel>
+
             <controls:Media11NowPlayingBar
                 Grid.Row="4"
                 Background="Transparent"
