@@ -201,7 +201,7 @@
                 </Button>
             </Grid>
 
-            <Border Grid.Row="3" Background="{ThemeResource SystemChromeMediumLowColor}">
+            <Border Grid.Row="3" Background="{ThemeResource SystemAccentColor_SubtleBackground}">
                 <ContentControl x:Name="MainContent"
                                 HorizontalContentAlignment="Stretch"
                                 ContentTemplateSelector="{StaticResource MainContentTemplateSelector}" />
@@ -218,6 +218,7 @@
                 <!--<Rectangle Fill="{ThemeResource SystemAccentColor_Test}"/>-->
                 <!--<Rectangle Fill="{ThemeResource SystemAccentColor_HighlightT}"/>-->
                 <Rectangle Fill="{ThemeResource SystemAccentColor_Highlight}"/>
+                <Rectangle Fill="{ThemeResource SystemAccentColor_SubtleBackground}"/>
             </StackPanel>
 
             <controls:Media11NowPlayingBar

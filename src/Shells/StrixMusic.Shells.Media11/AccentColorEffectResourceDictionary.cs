@@ -68,6 +68,14 @@ public class AccentColorEffectResourceDictionary : ResourceDictionary
         );
         this["SystemAccentColor_Highlight"] = ConvertToColor(lchHighlight);
 
+        var lchSubtleBackground = new CieLch(
+            Application.Current.RequestedTheme is ApplicationTheme.Light
+                ? 95f : 15f,
+            15f,
+            lchBase.H
+        );
+        this["SystemAccentColor_SubtleBackground"] = ConvertToColor(lchSubtleBackground);
+
         _accentColor = accentColor;
     }
 
