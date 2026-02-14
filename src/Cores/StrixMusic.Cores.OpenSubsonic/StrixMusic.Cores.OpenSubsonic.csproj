@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <LangVersion>10.0</LangVersion>
+        <WarningsAsErrors>nullable</WarningsAsErrors>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\..\..\metaneutrons\SubSonicMedia\SubSonicMedia\SubSonicMedia.csproj" />
+        <ProjectReference Include="..\..\Sdk\StrixMusic.Sdk\StrixMusic.Sdk.csproj"/>
+    </ItemGroup>
+
+</Project>
