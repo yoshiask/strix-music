@@ -23,10 +23,13 @@ public sealed class OpenSubsonicCoreImage : OpenSubsonicCoreModelBase, ICoreImag
     /// <inheritdoc />
     public async Task<Stream> OpenStreamAsync()
     {
-        var stream = await Client.Media.GetCoverArtAsync(_id);
-        Guard.IsNotNull(stream);
+        using var serverStream = await Client.Media.GetCoverArtAsync(_id);
+        Guard.IsNotNull(serverStream);
+        
+        var memoryStream = new MemoryStream();
+        await serverStream.CopyToAsync(memoryStream);
 
-        return stream;
+        return memoryStream;
     }
 
     /// <inheritdoc />

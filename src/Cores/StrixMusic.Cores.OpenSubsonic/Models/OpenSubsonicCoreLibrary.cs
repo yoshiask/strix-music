@@ -11,7 +11,7 @@ using SubSonicMedia.Responses.Browsing;
 
 namespace StrixMusic.Cores.OpenSubsonic.Models;
 
-public sealed class OpenSubsonicCoreLibrary : OpenSubsonicCorePlayableCollectionGroupBase, ICoreLibrary
+public sealed class OpenSubsonicCoreLibrary : OpenSubsonicCorePlayableCollectionGroupBase, ICoreLibrary,  IAsyncInit
 {
     public OpenSubsonicCoreLibrary(OpenSubsonicCore sourceCore) : base(sourceCore)
     {
@@ -25,16 +25,25 @@ public sealed class OpenSubsonicCoreLibrary : OpenSubsonicCorePlayableCollection
     /// <inheritdoc/>
     public async override Task InitAsync(CancellationToken cancellationToken = default)
     {
-        var response = await _client.Browsing.GetIndexesAsync(cancellationToken: cancellationToken);
+        var indexesResponse = await _client.Browsing.GetIndexesAsync(cancellationToken: cancellationToken);
+        TotalArtistItemsCount = indexesResponse.Indexes.Index.Sum(i => i.Artist.Count);
         
-        TotalArtistItemsCount = response.Indexes.Index.Sum(i => i.Artist.Count);
-        // TotalAlbumItemsCount = response.Indexes.Child.DistinctBy(c => c.Alb);
-        TotalTrackCount = response.Indexes.Child.Count;
+        // Some servers (e.g. Navidrome) only send artists in the indexes response.
+        // The search endpoint should be more reliable across servers.
+        var songSearchResponse = await _client.Search.Search2Async("''",
+            artistCount: 0, albumCount: 0,
+            songCount: int.MaxValue,
+            cancellationToken: cancellationToken);
+        var searchResultSongs = songSearchResponse.SearchResult.Songs;
+        TotalTrackCount = searchResultSongs.Count;
+
+        HashSet<string> albumIds = [];
+        foreach (var song in searchResultSongs)
+            albumIds.Add(song.AlbumId);
+        TotalAlbumItemsCount = albumIds.Count;
         
         var playlistResponse = await _client.Playlists.GetPlaylistsAsync(cancellationToken: cancellationToken);
         TotalPlaylistItemsCount = playlistResponse.Playlists.Playlist.Count;
-
-        await base.InitAsync(cancellationToken);
 
         IsInitialized = true;
     }
@@ -150,7 +159,7 @@ public sealed class OpenSubsonicCoreLibrary : OpenSubsonicCorePlayableCollection
     public override async IAsyncEnumerable<ICoreAlbumCollectionItem> GetAlbumItemsAsync(int limit, int offset, [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         var albumList = await _client.Browsing.GetAlbumListAsync(
-            type: AlbumListType.AlphabetalByName,
+            type: AlbumListType.Random,
             size: limit, offset: offset,
             cancellationToken: cancellationToken);
         
@@ -177,7 +186,7 @@ public sealed class OpenSubsonicCoreLibrary : OpenSubsonicCorePlayableCollection
     /// <inheritdoc/>
     public override async IAsyncEnumerable<ICoreTrack> GetTracksAsync(int limit, int offset, [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        var searchResponse = await _client.Search.Search2Async("",
+        var searchResponse = await _client.Search.Search2Async("''",
             artistCount: 0, albumCount: 0,
             songCount: limit, songOffset: offset,
             cancellationToken: cancellationToken);

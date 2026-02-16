@@ -1,22 +1,17 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Security;
 using System.Threading;
 using System.Threading.Tasks;
 using OwlCore.ComponentModel;
 using StrixMusic.Cores.OpenSubsonic.Models;
 using StrixMusic.Sdk.CoreModels;
 using StrixMusic.Sdk.MediaPlayback;
-using SubSonicMedia;
 using SubSonicMedia.Interfaces;
-using SubSonicMedia.Models;
 
 namespace StrixMusic.Cores.OpenSubsonic;
 
 public class OpenSubsonicCore : ICore
 {
-    private readonly ISubsonicClient _client;
 
     public OpenSubsonicCore(string instanceId, ISubsonicClient client)
     {
@@ -28,13 +23,13 @@ public class OpenSubsonicCore : ICore
         InstanceDescriptor = "";
         Devices = new List<ICoreDevice>();
         
-        _client = client;
+        Client = client;
 
         Library = new OpenSubsonicCoreLibrary(this);
     }
     
-    public ISubsonicClient Client => _client;
-    
+    internal ISubsonicClient Client { get; }
+
     public bool IsInitialized { get; private set; }
     public ICore SourceCore { get; private set; }
     public string Id { get; private set; }
@@ -59,10 +54,12 @@ public class OpenSubsonicCore : ICore
     public event EventHandler<string>? DisplayNameChanged;
     public event EventHandler<string>? InstanceDescriptorChanged;
 
-    public Task InitAsync(CancellationToken cancellationToken = default)
+    public async Task InitAsync(CancellationToken cancellationToken = default)
     {
+        if (Library is IAsyncInit asyncLibrary)
+            await asyncLibrary.InitAsync(cancellationToken);
+        
         IsInitialized = true;
-        return Task.CompletedTask;
     }
     
     public ValueTask DisposeAsync()
