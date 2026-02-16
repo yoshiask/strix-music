@@ -1,0 +1,70 @@
+﻿<Page
+	x:Class="StrixMusic.Controls.Settings.MusicSources.ConnectNew.OpenSubsonic.LandingPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+	xmlns:tkcontrols="using:CommunityToolkit.WinUI.Controls"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:ui="using:CommunityToolkit.WinUI"
+	Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+	mc:Ignorable="d">
+
+	<StackPanel
+		MaxWidth="550"
+		Margin="20"
+		Spacing="0">
+		<StackPanel Grid.Row="1" Spacing="12">
+			<Image
+				MaxWidth="250"
+				MaxHeight="250"
+				Source="ms-appx:///Assets/Cores/OpenSubsonic/access.svg" />
+		</StackPanel>
+
+		<tkcontrols:SettingsCard ContentAlignment="Left">
+			<StackPanel>
+
+				<StackPanel Spacing="17">
+
+					<TextBox
+						Width="300"
+						Header="Server URL"
+						PlaceholderText="Enter server URL"
+						Text="{x:Bind Settings.ServerUrl, Mode=TwoWay, FallbackValue=''}" />
+
+					<TextBox
+						Width="300"
+						Header="Username"
+						PlaceholderText="Enter account username"
+						Text="{x:Bind Settings.Username, Mode=TwoWay, FallbackValue=''}" />
+
+					<PasswordBox
+						Width="300"
+						Header="Password"
+						PlaceholderText="Enter account password"
+						Text="{x:Bind Settings.Password, Mode=TwoWay, FallbackValue=''}" />
+
+					<StackPanel Orientation="Horizontal" Spacing="8">
+						<Button Command="{x:Bind CancelCoreSetupCommand}" Content="Cancel" />
+
+						<Button
+							Command="{x:Bind TryContinueCommand}"
+							Content="Continue"
+							IsEnabled="{x:Bind IsFormValid(Settings.ServerUrl, Settings.Username, Settings.Password), FallbackValue=false, Mode=OneWay}" />
+
+						<ProgressRing IsActive="{x:Bind TryContinueCommand.IsRunning, Mode=OneWay}" />
+					</StackPanel>
+
+					<TextBlock
+						Width="300"
+						FontWeight="Bold"
+						Foreground="Red"
+						Text="{x:Bind TryContinueCommand.ExecutionTask.Exception.Message, Mode=OneWay}"
+						TextWrapping="WrapWholeWords"
+						Visibility="{x:Bind TryContinueCommand.ExecutionTask.IsFaulted, Mode=OneWay}" />
+				</StackPanel>
+			</StackPanel>
+		</tkcontrols:SettingsCard>
+	</StackPanel>
+</Page>

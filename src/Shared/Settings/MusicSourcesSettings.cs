@@ -60,6 +60,14 @@ public partial class MusicSourcesSettings : SettingsBase
             defaultSettingsFactory: async instanceId => new IpfsCoreSettings(await GetDataFolderByName(instanceId.HashMD5Fast())))
         );
 
+        AvailableMusicSources.Add(new AvailableMusicSource
+            (
+            name: "OpenSubsonic",
+            description: "Stream music from your own Subsonic, OpenSubsonic, or Navidrome server.",
+            imageFactory: () => CoreImageFromApplicationPathAsync("ms-appx:///Assets/Cores/OpenSubsonic/logo.png"),
+            defaultSettingsFactory: async instanceId => new OpenSubsonicCoreSettings(await GetDataFolderByName(instanceId.HashMD5Fast())))
+        );
+
         async Task<ICoreImage> CoreImageFromApplicationPathAsync(string assetPath)
         {
             var storageFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri(assetPath));
@@ -77,10 +85,15 @@ public partial class MusicSourcesSettings : SettingsBase
     /// </summary>
     public ObservableCollection<OneDriveCoreSettings> ConfiguredOneDriveCores => GetSetting(defaultValue: () => new ObservableCollection<OneDriveCoreSettings>());
 
-       /// <summary>
-    /// Gets the list of all registered storage cores that interact with OneDrive.
+    /// <summary>
+    /// Gets the list of all registered storage cores that interact with IPFS.
     /// </summary>
     public ObservableCollection<IpfsCoreSettings> ConfiguredIpfsCores => GetSetting(defaultValue: () => new ObservableCollection<IpfsCoreSettings>());
+
+    /// <summary>
+    /// Gets the list of all registered OpenSubsonic-compatible cores.
+    /// </summary>
+    public ObservableCollection<OpenSubsonicCoreSettings> ConfiguredOpenSubsonicCores => GetSetting(defaultValue: () => new ObservableCollection<OpenSubsonicCoreSettings>());
 
     /// <summary>
     /// The cores that are available to be created.

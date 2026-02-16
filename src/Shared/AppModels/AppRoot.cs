@@ -220,6 +220,9 @@ public partial class AppRoot : ObservableObject, IAsyncInit
             MusicSourcesSettings.ConfiguredIpfsCores.CollectionChanged -= ConfiguredIpfsCores_CollectionChanged;
             MusicSourcesSettings.ConfiguredIpfsCores.CollectionChanged += ConfiguredIpfsCores_CollectionChanged;
 
+            MusicSourcesSettings.ConfiguredOpenSubsonicCores.CollectionChanged -= ConfiguredOpenSubsonicCores_CollectionChanged;
+            MusicSourcesSettings.ConfiguredOpenSubsonicCores.CollectionChanged += ConfiguredOpenSubsonicCores_CollectionChanged;
+
             // Merge cores together and apply plugins
             var allNewCores = await CreateConfiguredCoresAsync().ToListAsync(cancellationToken);
 
@@ -289,6 +292,13 @@ public partial class AppRoot : ObservableObject, IAsyncInit
             var core = await CoreFactory.CreateIpfsCoreAsync(item, _ipfs.Client);
             yield return core;
         }
+
+        foreach (var item in MusicSourcesSettings.ConfiguredOpenSubsonicCores.Where(NeedsToBeCreated).Where(x => x.CanCreateCore))
+        {
+            Logger.LogInformation($"Creating core {item.InstanceId}");
+            var core = await CoreFactory.CreateOpenSubsonicCoreAsync(item, HttpMessageHandler);
+            yield return core;
+        }
     }
 
     private async void ConfiguredLocalStorageCores_OnCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
@@ -314,6 +324,14 @@ public partial class AppRoot : ObservableObject, IAsyncInit
         Guard.IsNotNull(_ipfs.Client);
 
         await HandleCoreSettingsCollectionChangedAsync<IpfsCoreSettings>(sender, e, async x => await CoreFactory.CreateIpfsCoreAsync(x, _ipfs.Client));
+        await MusicSourcesSettings.SaveAsync();
+    }
+
+    private async void ConfiguredOpenSubsonicCores_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+    {
+        Guard.IsNotNull(MusicSourcesSettings);
+
+        await HandleCoreSettingsCollectionChangedAsync<OpenSubsonicCoreSettings>(sender, e, async x => await CoreFactory.CreateOpenSubsonicCoreAsync(x, HttpMessageHandler));
         await MusicSourcesSettings.SaveAsync();
     }
 

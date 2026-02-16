@@ -21,6 +21,7 @@ namespace StrixMusic.Settings
     [JsonSerializable(typeof(ObservableCollection<LocalStorageCoreSettings>))]
     [JsonSerializable(typeof(ObservableCollection<OneDriveCoreSettings>))]
     [JsonSerializable(typeof(ObservableCollection<IpfsCoreSettings>))]
+    [JsonSerializable(typeof(ObservableCollection<OpenSubsonicCoreSettings>))]
     [JsonSerializable(typeof(Dictionary<string, Ipfs.Cid[]>))]
     [JsonSerializable(typeof(StrixMusicShells))]
     [JsonSerializable(typeof(AdaptiveShells))]

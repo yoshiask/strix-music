@@ -5,6 +5,7 @@ using System.Security;
 using System.Threading;
 using System.Threading.Tasks;
 using OwlCore.ComponentModel;
+using StrixMusic.Cores.OpenSubsonic.Models;
 using StrixMusic.Sdk.CoreModels;
 using StrixMusic.Sdk.MediaPlayback;
 using SubSonicMedia;
@@ -17,12 +18,7 @@ public class OpenSubsonicCore : ICore
 {
     private readonly ISubsonicClient _client;
 
-    public OpenSubsonicCore(string instanceId, string serverUrl, string username, string password)
-        : this(instanceId, new(serverUrl, username, password))
-    {
-    }
-        
-    public OpenSubsonicCore(string instanceId, SubsonicConnectionInfo connectionInfo)
+    public OpenSubsonicCore(string instanceId, ISubsonicClient client)
     {
         InstanceId = instanceId;
         Id = nameof(OpenSubsonicCore);
@@ -32,9 +28,9 @@ public class OpenSubsonicCore : ICore
         InstanceDescriptor = "";
         Devices = new List<ICoreDevice>();
         
-        _client = new SubsonicClient(connectionInfo);
-        
-        // Library = TODO
+        _client = client;
+
+        Library = new OpenSubsonicCoreLibrary(this);
     }
     
     public ISubsonicClient Client => _client;
@@ -62,8 +58,12 @@ public class OpenSubsonicCore : ICore
     public event CollectionChangedEventHandler<ICoreDevice>? DevicesChanged;
     public event EventHandler<string>? DisplayNameChanged;
     public event EventHandler<string>? InstanceDescriptorChanged;
-    
-    public Task InitAsync(CancellationToken cancellationToken = default) => Task.CompletedTask;
+
+    public Task InitAsync(CancellationToken cancellationToken = default)
+    {
+        IsInitialized = true;
+        return Task.CompletedTask;
+    }
     
     public ValueTask DisposeAsync()
     {

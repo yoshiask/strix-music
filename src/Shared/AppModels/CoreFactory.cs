@@ -23,6 +23,9 @@ using Windows.Storage;
 using Logger = OwlCore.Diagnostics.Logger;
 using OwlCore.Kubo;
 using Ipfs.Http;
+using StrixMusic.Cores.OpenSubsonic;
+using SubSonicMedia;
+using SubSonicMedia.Models;
 
 namespace StrixMusic.AppModels;
 
@@ -178,6 +181,34 @@ public static class CoreFactory
 
         logo.SourceCore = core;
         core.Logo = logo;
+        return core;
+    }
+    
+    /// <summary>
+    /// Creates an <see cref="OpenSubsonicCore"/> from the provided <see cref="OpenSubsonicCoreSettings"/>.
+    /// </summary>
+    /// <param name="settings">The settings used to connect to the OpenSubsonic-compatible server.</param>
+    /// <returns>A <see cref="Task"/> that represents the asynchronous operation. Value is the new core instance.</returns>
+    public static async Task<ICore> CreateOpenSubsonicCoreAsync(OpenSubsonicCoreSettings settings, HttpMessageHandler messageHandler)
+    {
+        var instanceId = settings.InstanceId.HashMD5Fast();
+        
+        HttpClient httpClient = new(messageHandler);
+        SubsonicClient client = new(new SubsonicConnectionInfo(settings.ServerUrl, settings.Username, settings.Password),
+            httpClient:  httpClient);
+
+        var logoFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/Cores/LocalStorage/Logo.svg"));
+        var logo = new CoreFileImage(new WindowsStorageFile(logoFile));
+
+        var core = new OpenSubsonicCore(instanceId, client)
+        {
+            // ScannerWaitBehavior = ScannerWaitBehavior.NeverWait,
+            // InstanceDescriptor = folderToScan.Path,
+            // Logo = logo,
+        };
+
+        logo.SourceCore = core;
+        //core.Logo = logo;
         return core;
     }
 }
