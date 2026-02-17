@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using OwlCore.ComponentModel;
@@ -37,7 +38,7 @@ public class OpenSubsonicCore : ICore
     public string InstanceDescriptor { get; private set; }
     public string DisplayName { get; private set; }
     public ICoreImage? Logo { get; private set; }
-    public MediaPlayerType PlaybackType { get; private set; }
+    public MediaPlayerType PlaybackType => MediaPlayerType.Standard;
     public ICoreUser? User { get; private set; }
     public IReadOnlyList<ICoreDevice> Devices { get; private set; }
     public ICoreLibrary Library { get; private set; }
@@ -47,7 +48,15 @@ public class OpenSubsonicCore : ICore
     public ICoreDiscoverables? Discoverables { get; private set; }
     public Task<ICoreModel?> GetContextByIdAsync(string id, CancellationToken cancellationToken = default) => Task.FromResult<ICoreModel?>(null);
 
-    public Task<IMediaSourceConfig?> GetMediaSourceAsync(ICoreTrack track, CancellationToken cancellationToken = default) => Task.FromResult<IMediaSourceConfig?>(null);
+    public async Task<IMediaSourceConfig?> GetMediaSourceAsync(ICoreTrack track, CancellationToken cancellationToken = default)
+    {
+        using var serverStream = await Client.Media.StreamAsync(track.Id, estimateContentLength: true, cancellationToken: cancellationToken);
+
+        MemoryStream memoryStream = new();
+        await serverStream.CopyToAsync(memoryStream, 81920, cancellationToken);
+        
+        return new MediaSourceConfig(track, track.Id, memoryStream, "");
+    }
 
     public event EventHandler<ICoreImage?>? LogoChanged;
     public event CollectionChangedEventHandler<ICoreDevice>? DevicesChanged;
